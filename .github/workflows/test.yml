@@ -1,0 +1,16 @@
+name: Testing output capture between steps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-that-output:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Produce json output
+        id: my-output
+        run: cat sample-publish-output.json
+      - name: Consume json output
+        run: echo ${{ steps.my-output.outputs }}
+
