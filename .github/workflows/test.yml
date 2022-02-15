@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2 
       - name: Produce json output
         id: my-output
-        run: cat sample-publish-output.json
+        run: echo "::set-output name=version::1"
       - name: Consume json output
-        run: echo ${{ steps.my-output.outputs }}
+        run: echo ${{ steps.my-output.outputs.version }}
 
