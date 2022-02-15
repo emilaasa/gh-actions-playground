@@ -17,3 +17,13 @@ jobs:
       - name: Consume json output
         run: echo ${{ steps.my-output.outputs.version }}
 
+  environment-extravaganza:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Set up the github env
+        run: |
+          echo "MY_VAR=GREAT" >> $GITHUB_ENV
+      - name: Use the environment!
+        run: echo ${{ env.MY_VAR }}
+
