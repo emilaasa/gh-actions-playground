@@ -24,6 +24,8 @@ jobs:
       - name: Set up the github env
         run: |
           echo "MY_VAR=GREAT" >> $GITHUB_ENV
+          echo "MY_MULTILINE=EXPRESSION" >> $GITHUB_ENV
       - name: Use the environment!
         run: echo ${{ env.MY_VAR }}
-
+      - name: Use the MULTILINE environment!
+        run: echo ${{ env.MY_MULTILINE }}
