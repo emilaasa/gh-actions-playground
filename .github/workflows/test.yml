@@ -1,6 +1,9 @@
 name: Testing output capture between steps
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
