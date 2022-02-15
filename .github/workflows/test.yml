@@ -6,17 +6,19 @@ on:
       - main
   workflow_dispatch:
 
-jobs:
-  test-that-output:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2 
-      - name: Produce json output
-        id: my-output
-        run: echo "::set-output name=version::$(cat sample-publish-output.json | jq .Version)"
-      - name: Consume json output
-        run: echo ${{ steps.my-output.outputs.version }}
+# This works well, commenting it out now!
+# jobs:
+#   test-that-output:
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - uses: actions/checkout@v2 
+#       - name: Produce json output
+#         id: my-output
+#         run: echo "::set-output name=version::$(cat sample-publish-output.json | jq .Version)"
+#       - name: Consume json output
+#         run: echo ${{ steps.my-output.outputs.version }}
 
+jobs:
   environment-extravaganza:
     runs-on: ubuntu-20.04
     steps:
@@ -25,7 +27,10 @@ jobs:
         run: |
           echo "MY_VAR=GREAT" >> $GITHUB_ENV
           echo "MY_MULTILINE=EXPRESSION" >> $GITHUB_ENV
+          echo "MY_COMPUTED=${{ github.sha }}" >> $GITHUB_ENV
       - name: Use the environment!
         run: echo ${{ env.MY_VAR }}
       - name: Use the MULTILINE environment!
         run: echo ${{ env.MY_MULTILINE }}
+      - name: Use the computed string!
+        run: echo ${{ env.MY_COMPUTED }}
